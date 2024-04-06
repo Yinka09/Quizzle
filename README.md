@@ -24,7 +24,7 @@ Quizzle is a trivia quiz web application designed to test your knowledge on a va
 
 To run Quizzle locally, follow these steps:
 
-- Clone the repository: git clone https://github.com/your-username/quizzle.git
+- Clone the repository: git clone https://github.com/Yinka09/Quizzle.git
 - Install dependencies: npm install
 - Start the server: nodemon index.js
 - Visit http://localhost:3000 in your web browser to access Quizzle.
