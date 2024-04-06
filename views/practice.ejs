@@ -1,0 +1,102 @@
+<% for (let i = 0; i < newQuestions.length; i++) { %>
+<!-- ... (Your existing code for rendering questions) ... -->
+
+<% if (i < newQuestions.length - 1) { %>
+<div onclick="handleNext('<%= newQuestions[i].question %>')">next</div>
+<% } else { %>
+<button onclick="submitAnswers()">Submit</button>
+<div onclick="handlePrev('<%= newQuestions[i].question %>')">prev</div>
+<% } %> <% } %>
+
+<script>
+  let currentIndex = 0;
+
+  function handlePrev(currentQuestion) {
+    console.log("Prev clicked for question:", currentQuestion);
+    currentIndex = Math.max(0, currentIndex - 1);
+    // Add logic to update UI for the previous question
+  }
+
+  function handleNext(currentQuestion) {
+    console.log("Next clicked for question:", currentQuestion);
+    currentIndex = Math.min(newQuestions.length - 1, currentIndex + 1);
+    // Add logic to update UI for the next question
+  }
+
+  function submitAnswers() {
+    console.log("Answers submitted!");
+    // Add logic to handle the submission of answers
+  }
+</script>
+
+Code 2 <% for (let i = 0; i < newQuestions.length; i++) { %>
+<div>
+  <p><%= newQuestions[i].question %></p>
+  <% const allAnswers = [newQuestions[i].correct_answer,
+  ...newQuestions[i].incorrect_answers]; %> <% const shuffledAnswers =
+  allAnswers.sort(() => Math.random() - 0.5); %>
+  <ul>
+    <% for (let answer of shuffledAnswers) { %>
+    <li><%= answer %></li>
+    <% } %>
+  </ul>
+</div>
+
+<% if (i > 0) { %>
+<div onclick="handlePrev('<%= newQuestions[i].question %>')">prev</div>
+<% } %> <% if (i < newQuestions.length - 1) { %>
+<div onclick="handleNext('<%= newQuestions[i].question %>')">next</div>
+<% } else { %>
+<button onclick="submitAnswers()">Submit</button>
+<div onclick="handlePrev('<%= newQuestions[i].question %>')">prev</div>
+<% } %> <% } %> CODE 3 <% let currentIndex = 0; %> <% for (let i = 0; i <
+newQuestions.length; i++) { %>
+<div id="question<%= i %>">
+  <p><%= newQuestions[i].question %></p>
+  <% const allAnswers = [newQuestions[i].correct_answer,
+  ...newQuestions[i].incorrect_answers]; %> <% const shuffledAnswers =
+  allAnswers.sort(() => Math.random() - 0.5); %>
+  <ul>
+    <% for (let answer of shuffledAnswers) { %>
+    <li><%= answer %></li>
+    <% } %>
+  </ul>
+</div>
+
+<% if (i > 0) { %>
+<div onclick="handlePrev('<%= i %>')">prev</div>
+<% } %> <% if (i < newQuestions.length - 1) { %>
+<div onclick="handleNext('<%= i %>')">next</div>
+<% } else { %>
+<button onclick="submitAnswers()">Submit</button>
+<div onclick="handlePrev('<%= i %>')">prev</div>
+<% } %> <% } %>
+
+<script>
+  function handlePrev(index) {
+    console.log("Prev clicked for question:", index);
+    hideQuestion(index);
+    currentIndex = Math.max(0, currentIndex - 1);
+    showQuestion(currentIndex);
+  }
+
+  function handleNext(index) {
+    console.log("Next clicked for question:", index);
+    hideQuestion(index);
+    currentIndex = Math.min(newQuestions.length - 1, currentIndex + 1);
+    showQuestion(currentIndex);
+  }
+
+  function submitAnswers() {
+    console.log("Answers submitted!");
+    // Add logic to handle the submission of answers (e.g., send to server, calculate score, etc.)
+  }
+
+  function hideQuestion(index) {
+    document.getElementById("question" + index).style.display = "none";
+  }
+
+  function showQuestion(index) {
+    document.getElementById("question" + index).style.display = "block";
+  }
+</script>
